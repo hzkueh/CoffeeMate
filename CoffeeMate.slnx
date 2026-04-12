@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/CoffeeMate.API/CoffeeMate.API.csproj" />
+    <Project Path="src/CoffeeMate.Application/CoffeeMate.Application.csproj" />
+    <Project Path="src/CoffeeMate.Domain/CoffeeMate.Domain.csproj" />
+    <Project Path="src/CoffeeMate.Infrastructure/CoffeeMate.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/CoffeeMate.Tests/CoffeeMate.Tests.csproj" />
+  </Folder>
+</Solution>

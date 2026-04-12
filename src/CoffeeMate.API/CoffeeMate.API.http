@@ -1,0 +1,6 @@
+@CoffeeMate.API_HostAddress = http://localhost:5136
+
+GET {{CoffeeMate.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
