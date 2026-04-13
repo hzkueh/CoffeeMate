@@ -50,4 +50,10 @@ Thumbs.db
 *.db
 *.db-shm
 *.db-wal
+
+# Local appsettings overrides (may contain secrets)
+appsettings.Production.json
+appsettings.*.local.json
+appsettings.local.json
+
 .claude/
