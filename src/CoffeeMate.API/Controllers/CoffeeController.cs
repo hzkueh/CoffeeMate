@@ -1,9 +1,11 @@
 using CoffeeMate.Application.Exceptions;
 using CoffeeMate.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeMate.API.Controllers;
 
+[AllowAnonymous]
 public class CoffeeController(ICoffeeService coffeeService) : BaseApiController
 {
     [HttpGet]
