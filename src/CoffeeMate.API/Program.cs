@@ -1,4 +1,6 @@
+using CoffeeMate.Application.Interfaces;
 using CoffeeMate.Infrastructure.Data;
+using CoffeeMate.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,8 @@ builder.Services.AddDbContext<BaristaContext>(opt =>
 {
     opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddScoped<ICoffeeRepository, CoffeeRepository>();
+
 var app = builder.Build();
 
 app.MapControllers();
