@@ -41,6 +41,7 @@ dist/
 .env
 .env.local
 .env.*.local
+*.local
 
 # OS
 .DS_Store
@@ -55,5 +56,8 @@ Thumbs.db
 appsettings.Production.json
 appsettings.*.local.json
 appsettings.local.json
+
+# Markdown files
+*.md
 
 .claude/
