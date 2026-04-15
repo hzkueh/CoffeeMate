@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-3xl mx-auto px-4 py-10">
-    <RouterLink to="/" class="text-sm text-amber-600 hover:underline mb-6 inline-block">
+    <RouterLink to="/coffees" class="text-sm text-amber-600 hover:underline mb-6 inline-block">
       &larr; Back to Coffee Explorer
     </RouterLink>
 

@@ -9,7 +9,7 @@
       <RouterLink
         v-for="coffee in store.coffees"
         :key="coffee.id"
-        :to="`/coffee/${coffee.id}`"
+        :to="`/coffees/${coffee.id}`"
         class="block bg-white rounded-2xl shadow hover:shadow-md transition p-6 border border-stone-100"
       >
         <h2 class="text-xl font-semibold text-stone-800 mb-1">{{ coffee.name }}</h2>
