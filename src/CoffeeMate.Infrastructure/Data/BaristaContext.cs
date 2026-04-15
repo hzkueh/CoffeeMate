@@ -36,13 +36,6 @@ public class BaristaContext(DbContextOptions options) : IdentityDbContext<AppUse
             .IsRequired(false)
             .OnDelete(DeleteBehavior.SetNull);
 
-        // --- SessionStep ---
-        // RowVersion as concurrency token (SQLite does not support IsRowVersion)
-        builder.Entity<SessionStep>()
-            .Property(ss => ss.RowVersion)
-            .IsRowVersion()
-            .IsConcurrencyToken();
-
         // --- Collaborator ---
         // UserId → AppUser (1:many — same user can join multiple sessions)
         builder.Entity<Collaborator>()
