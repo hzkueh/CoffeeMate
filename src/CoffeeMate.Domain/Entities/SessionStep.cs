@@ -17,7 +17,4 @@ public class SessionStep
 
     public Guid SessionId { get; set; }
     public Session Session { get; set; } = null!;
-
-    // Optimistic concurrency token to prevent double-claim
-    public byte[] RowVersion { get; set; } = [];
 }

@@ -67,15 +67,31 @@ builder.Services.AddScoped<ICoffeeRepository, CoffeeRepository>();
 builder.Services.AddScoped<ICoffeeService, CoffeeService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IGuestTokenService, GuestTokenService>();
+builder.Services.AddScoped<ISessionService, SessionService>();
 
 var app = builder.Build();
 
-// Global exception handler — catches unhandled exceptions, returns generic 500 without leaking stack traces
+// Global exception handler — logs the real error, returns safe message in production
 app.UseExceptionHandler(errApp => errApp.Run(async ctx =>
 {
+    var ex = ctx.Features.Get<Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature>()?.Error;
+    var logger = ctx.RequestServices.GetRequiredService<ILogger<Program>>();
+    logger.LogError(ex, "Unhandled exception on {Method} {Path}", ctx.Request.Method, ctx.Request.Path);
+
     ctx.Response.StatusCode = StatusCodes.Status500InternalServerError;
     ctx.Response.ContentType = "application/json";
-    await ctx.Response.WriteAsJsonAsync(new { message = "An unexpected error occurred. Please try again later." });
+
+    object body = app.Environment.IsDevelopment()
+        ? new
+        {
+            message    = ex?.Message,
+            inner      = ex?.InnerException?.Message,
+            type       = ex?.GetType().Name,
+            stackTrace = ex?.StackTrace
+        }
+        : new { message = "An unexpected error occurred. Please try again later." };
+
+    await ctx.Response.WriteAsJsonAsync(body);
 }));
 
 app.UseCors("Frontend");
